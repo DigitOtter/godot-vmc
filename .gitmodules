@@ -1,0 +1,4 @@
+[submodule "addons/godot-vmc-lib"]
+	path = addons/godot-vmc-lib
+	url = https://github.com/DigitOtter/godot-vmc-lib.git
+	branch = releases
