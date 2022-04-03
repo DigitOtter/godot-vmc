@@ -1,0 +1,139 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "",
+"class": "EditorSceneImporterGLTF",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/EditorSceneImporterGLTF.gdns"
+}, {
+"base": "",
+"class": "GLTFAccessor",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFAccessor.gdns"
+}, {
+"base": "",
+"class": "GLTFAnimation",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFAnimation.gdns"
+}, {
+"base": "",
+"class": "GLTFBufferView",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFBufferView.gdns"
+}, {
+"base": "",
+"class": "GLTFCamera",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFCamera.gdns"
+}, {
+"base": "",
+"class": "GLTFDocument",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFDocument.gdns"
+}, {
+"base": "",
+"class": "GLTFLight",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFLight.gdns"
+}, {
+"base": "",
+"class": "GLTFMesh",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFMesh.gdns"
+}, {
+"base": "",
+"class": "GLTFNode",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFNode.gdns"
+}, {
+"base": "",
+"class": "GLTFSkeleton",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFSkeleton.gdns"
+}, {
+"base": "",
+"class": "GLTFSkin",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFSkin.gdns"
+}, {
+"base": "",
+"class": "GLTFSpecGloss",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFSpecGloss.gdns"
+}, {
+"base": "",
+"class": "GLTFState",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFState.gdns"
+}, {
+"base": "",
+"class": "GLTFTexture",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/GLTFTexture.gdns"
+}, {
+"base": "",
+"class": "PackedSceneGLTF",
+"language": "NativeScript",
+"path": "res://addons/godot_gltf/PackedSceneGLTF.gdns"
+}, {
+"base": "Spatial",
+"class": "VRMTopLevel",
+"language": "GDScript",
+"path": "res://addons/vrm/vrm_toplevel.gd"
+} ]
+_global_script_class_icons={
+"EditorSceneImporterGLTF": "",
+"GLTFAccessor": "",
+"GLTFAnimation": "",
+"GLTFBufferView": "",
+"GLTFCamera": "",
+"GLTFDocument": "",
+"GLTFLight": "",
+"GLTFMesh": "",
+"GLTFNode": "",
+"GLTFSkeleton": "",
+"GLTFSkin": "",
+"GLTFSpecGloss": "",
+"GLTFState": "",
+"GLTFTexture": "",
+"PackedSceneGLTF": "",
+"VRMTopLevel": ""
+}
+
+[application]
+
+config/name="VMC"
+run/main_scene="res://Main.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/per_pixel_transparency/allowed=true
+window/per_pixel_transparency/enabled=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/Godot-MToon-Shader/plugin.cfg", "res://addons/vrm/plugin.cfg" )
+
+[global]
+
+max_remote_stdout_chars_per_second=false
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+threads/thread_model=2
+threads/thread_safe_bvh=true
+quality/filters/msaa=4
+environment/default_environment="res://default_env.tres"

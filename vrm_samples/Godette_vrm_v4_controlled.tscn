@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://VMCControl/VMCBlendShapeControl.gd" type="Script" id=1]
+[ext_resource path="res://VMCControl/VMCBoneControl.gd" type="Script" id=2]
+[ext_resource path="res://vrm_samples/Godette_vrm_v4.vrm" type="PackedScene" id=3]
+
+[node name="Godette_vrm_v4" instance=ExtResource( 3 )]
+
+[node name="Skeleton" parent="." index="0"]
+script = ExtResource( 2 )
+
+[node name="Face" parent="Skeleton" index="0"]
+material/0 = null
+
+[node name="Body" parent="Skeleton" index="1"]
+material/0 = null
+material/1 = null
+material/2 = null
+
+[node name="anim" parent="." index="2"]
+script = ExtResource( 1 )
