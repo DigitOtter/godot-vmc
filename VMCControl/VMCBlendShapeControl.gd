@@ -38,7 +38,7 @@ func _ready():
 			
 			var mesh = get_node_or_null((split_name[0]))
 			if not mesh:
-				print("Unable to find mesh: %s" % split_name[0])
+				#print("Unable to find mesh: %s" % split_name[0])
 				continue
 			
 			var md = MorphData.new()
@@ -54,9 +54,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for name in self.vmc_receiver.blend_shapes:
-		if self.get_animation(name.to_upper()):
+		if self.get_animation(name.to_upper()) != null:
 			var val: float = self.vmc_receiver.blend_shapes[name]
 			self.current_animation = name.to_upper()
 			self.seek(val, true)
 		else:
-			print("Unknown blend shape: '" + name + "'")
+			#print("Unknown blend shape: '" + name + "'")
+			pass
