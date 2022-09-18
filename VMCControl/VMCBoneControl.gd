@@ -1,8 +1,8 @@
-extends Skeleton
+extends Skeleton3D
 
 # VMC Receiver Path
-export(NodePath) var vmc_receiver_path = "/root/Main/VMCReceiver"
-onready var vmc_receiver = get_node(self.vmc_receiver_path)
+@export var vmc_receiver_path: NodePath = "/root/Main/VMCReceiver"
+@onready var vmc_receiver = get_node(self.vmc_receiver_path)
 
 var to_vmc_bone_mapping: Dictionary
 

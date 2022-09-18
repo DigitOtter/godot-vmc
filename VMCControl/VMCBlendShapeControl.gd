@@ -1,21 +1,21 @@
 extends AnimationPlayer
 
 # VMC Receiver Path
-export(NodePath) var vmc_receiver_path = "/root/Main/VMCReceiver"
-onready var vmc_receiver = get_node(self.vmc_receiver_path)
+@export var vmc_receiver_path: NodePath = "/root/Main/VMCReceiver"
+@onready var vmc_receiver = get_node(self.vmc_receiver_path)
 
 # Code taken from https://github.com/you-win/openseeface-gd
 class ExpressionData:
 	var morphs: Array # MorphData
 
 class MorphData:
-	var mesh: MeshInstance
+	var mesh: MeshInstance3D
 	var morph: String
 	var values: Array
 
 var expression_data: Dictionary = {}
 
-func __modify_blend_shape(mesh_instance: MeshInstance, blend_shape: String, value: float) -> void:
+func __modify_blend_shape(mesh_instance: MeshInstance3D, blend_shape: String, value: float) -> void:
 	mesh_instance.set(blend_shape, value)
 
 
@@ -30,7 +30,7 @@ func _ready():
 		var animation: Animation = self.get_animation(animation_name)
 		for track_index in animation.get_track_count():
 			var track_name: String = animation.track_get_path(track_index)
-			var split_name: PoolStringArray = track_name.split(":")
+			var split_name:  = track_name.split(":")
 			
 			if split_name.size() != 2:
 				print("Model has ultra nested meshes: %s" % track_name)
