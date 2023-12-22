@@ -1,7 +1,7 @@
 extends Skeleton3D
 
 # VMC Receiver Path
-@export var vmc_receiver_path: NodePath = "/root/Main/VMCReceiver"
+@export var vmc_receiver_path: NodePath = "/root/Main/VmcReceiver"
 @onready var vmc_receiver = get_node(self.vmc_receiver_path)
 
 var vmc_to_bone_idx: Dictionary
@@ -26,6 +26,13 @@ var __utg_converters: Dictionary = {
 	'rightupperarm': self.__utg_02r_convert,
 }
 
+var _goggles_idx: int = -1
+@export var goggle_toggle: bool = false
+var _goggle_on: bool = false
+var _goggles_on_pose: Transform3D = Transform3D(
+	Basis(	Quaternion.from_euler(Vector3(25.5/180.0*PI, 0.0, 0.0))),
+			Vector3(0.0, 0.10, -0.01))
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Invert bone mapping
@@ -39,13 +46,23 @@ func _ready():
 				self.__utg_converters.get(profile_bone_name.to_lower(), self.__utg_01_convert)
 			]
 			self.vmc_to_bone_idx[profile_bone_name] = bone_data
+		
+	
+	self._goggles_idx = self.find_bone('goggles')
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
+	if self.goggle_toggle:
+		self.goggle_toggle = false
+		self._goggle_on = !self._goggle_on
+		if self._goggle_on:
+			self.set_bone_pose_position(self._goggles_idx, self._goggles_on_pose.origin)
+			self.set_bone_pose_rotation(self._goggles_idx, Quaternion(self._goggles_on_pose.basis))
+		else:
+			self.reset_bone_pose(self._goggles_idx)
+
+	
 	# TODO: Add bone stiffness and/or compare to vmc_receiver.t?
-	self.reset_bone_poses()
-	self.clear_bones_global_pose_override()
-	self.clear_bones_local_pose_override()
 	var bone_poses: Dictionary = self.vmc_receiver.bone_poses
 	for bone_name in bone_poses:
 		var bone_data = self.vmc_to_bone_idx.get(bone_name, null)
@@ -63,4 +80,4 @@ func _process(delta):
 			var euler = bone_pose.basis.get_euler()
 			euler = converter.call(euler)
 			
-			self.set_bone_pose_rotation(bone_idx, Quaternion(rest_pose)*Quaternion(euler))
+			self.set_bone_pose_rotation(bone_idx, Quaternion.from_euler(rest_pose)*Quaternion.from_euler(euler))
